@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 - Homework - Number Guessing Game in HTML</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+
+<body class="bg-light">
+    <div class="container">
+        <h3 class="text-center mt-2">Number Guessing Game</h3>
+        <div class="row ml-0 my-3 border border-dark rounded pl-2 py-3" id="message">
+            <div class="text-center w-100">
+                <strong>Type Number into input below. Remember
+                    you just have 10 times guessing</strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <input type="string" class="form-control" id="number" placeholder="Type Number You Guess" />
+            </div>
+            <div class="col-6">
+                <button class="btn btn-primary" id="guessButton" onclick="guess()">Guess</button>
+                <button class="btn btn-secondary" id="playAgainButton" onclick="playAgain()">Play again</button>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h4 id="time" class="my-2 py-2 text-center"></h4>
+            </div>
+            <div class="col-12" id="lastResult">
+
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    const timer = (time, status) => {
+        let timeDOM = document.getElementById("time");
+        var timer = time;
+        var expirationTimer = setInterval(() => {
+            status ? timeDOM.innerHTML = "Congratulations, You won!! You will play again in " + timer + "s" : timeDOM.innerHTML = "Sorry 🥺🥺, You losse!! You will play again in " + timer + "s"
+            timer--;
+            if (timer < 1) {
+                clearInterval(expirationTimer)
+                playAgain()
+            }
+        }, 1000)
+    }
+    const playAgain = () => {
+        window.location.reload();
+    }
+    const colorIndicate = {
+        "error": "red",
+        "success": "green"
+    }
+    const result = Math.floor(Math.random() * 21) + 1;
+    console.log(result)
+    let lastResultDOM = document.getElementById("lastResult")
+    let count = 10;
+    let stt = 0;
+    const handleLastResult = (notifycation, status) => {
+        count -= 1;
+        stt += 1;
+        if (status) {
+            lastResultDOM.innerHTML += notifycation + " You won at " + stt + " times guessing";
+            let guessButton = document.getElementById("guessButton")
+            guessButton.disabled = true
+        } else {
+            if (count === 0) {
+                lastResultDOM.innerHTML += "Your turn is over"
+                let guessButton = document.getElementById("guessButton")
+                guessButton.disabled = true
+                timer(5, false)
+            } else {
+                lastResultDOM.innerHTML += stt + ": " + notifycation + "You have " + count + " guess left" + " <br />"
+            }
+        }
+    }
+    const handleData = () => {
+        let count = 10
+        let notifycation = ""
+        let color = ""
+        let userGuess = parseInt(document.getElementById("number").value)
+        let message = document.getElementById("message")
+        if (!userGuess) {
+            notifycation = "Type number"
+            color = colorIndicate.error
+        } else if (userGuess > result) {
+            notifycation = " Sorry your guess: " + userGuess + " was too high, guess lower."
+            handleLastResult(notifycation, false)
+            color = colorIndicate.error
+        } else if (userGuess === result) {
+            notifycation = " Congratulations " + userGuess + " is the correct answer!!"
+            handleLastResult(notifycation, true)
+            color = colorIndicate.success
+            timer(5, true) // true == win
+        } else {
+            notifycation = " Sorry your guess: " + userGuess + "  was too low, guess higher. "
+            handleLastResult(notifycation, false)
+            color = colorIndicate.error
+        }
+        message.innerHTML = notifycation
+        message.style.backgroundColor = color
+        console.log(userGuess)
+    }
+
+    const guess = () => {
+        handleData();
+    }
+</script>
+
+</html>
