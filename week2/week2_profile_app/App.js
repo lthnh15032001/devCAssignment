@@ -6,7 +6,7 @@ import {
 } from "react-native";
 import { Router } from './src/navigation'
 
-export const App = () => {
+const App = () => {
   return (
     <View style={styles.container}>
       <Router />
