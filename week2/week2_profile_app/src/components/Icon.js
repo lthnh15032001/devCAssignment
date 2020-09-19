@@ -10,7 +10,7 @@ import MMaterialIcons from "react-native-vector-icons/dist/MaterialIcons";
 import MFontAwesome5 from "react-native-vector-icons/dist/FontAwesome5";
 import MFoundation from "react-native-vector-icons/dist/Foundation";
 import PropTypes from "prop-types";
-// import { colorStyles } from "../styles";
+import { Colors } from "../constants";
 
 export const Icon = (props) => {
     const {
@@ -76,5 +76,5 @@ Icon.propTypes = {
 
 Icon.defaultProps = {
     size: 20,
-    color:"#DFDFDF"
+    color: Colors.COLOR_ICON
 };

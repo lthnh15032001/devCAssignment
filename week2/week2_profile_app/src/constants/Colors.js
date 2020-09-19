@@ -49,7 +49,8 @@ export const Colors = {
   borderBottomTextField: "#ebedee",
   textFieldColor: "#9fa5aa",
   notificationBg: "#e6eaf1",
-  POLO_BLUE_COLOR: 'rgb(51,60,87)';
-  FOLLOW_COLOR: 'rgb(71,113,246)';
-  SEND_MESSAGE_COLOR: 'rgb(120,213,250)';
+  POLO_BLUE_COLOR: 'rgb(51,60,87)',
+  FOLLOW_COLOR: 'rgb(71,113,246)',
+  SEND_MESSAGE_COLOR: 'rgb(120,213,250)',
+  COLOR_ICON: '#7c87ac'
 };
