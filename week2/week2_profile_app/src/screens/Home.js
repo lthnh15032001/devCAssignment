@@ -77,7 +77,7 @@ export const Home = (props) => {
                 </View>
                 <View style={styles.wrapBody}>
                     <View>
-                        <Text style={styles.count}>210</Text>
+                        <Text style={styles.count}>{imageProps.length * 3}</Text>
                         <Text style={styles.descr}>Photos</Text>
                     </View>
                     <View style={styles.wrapCount}>
